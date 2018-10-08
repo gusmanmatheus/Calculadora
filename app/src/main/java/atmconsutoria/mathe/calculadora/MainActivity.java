@@ -261,9 +261,9 @@ public void armazenar(){
         Character auxiliar;
     int indice=expressao.size();
     expressao.add(expressao.size(),"");
-    int i=0;
-        for(i=0+indice; i<(expressaoRecebe.length()); i++){
-            auxiliar=expressaoRecebe.charAt(i);
+    int i=0; int r=0;
+        for(i=0; i<(expressaoRecebe.length()); i++){
+            auxiliar=expressaoRecebe.charAt(r);
 
             if(verificar(auxiliar)){
                  if(expressao.get(indice).equals("")){
@@ -276,7 +276,8 @@ public void armazenar(){
                  else{
 
                 expressao.add(String.valueOf(auxiliar));
-                indice=expressao.size();
+                     indice=expressao.size();
+
                // indice++;
                 expressao.add(indice,"");
             }}
@@ -288,7 +289,7 @@ public void armazenar(){
                 expressao.set(indice,numeroMaior);
             }
 
-
+        r++;
         }
        // saida.setText(String.valueOf(expressao.size()));
 //    for (String str:expressao
@@ -303,11 +304,9 @@ public void armazenar(){
 
         armazenar();
 
-        int x=expressao.size();
         Character achar='z';
-            int indice=expressao.size();
-            int i=0;
-            for(i=0+indice; i<(expressaoRecebe.length()); i++){
+
+            for(int i=0; i<(expressao.size()); i++){
                 achar= expressao.get(i).charAt(0);
            //     saida.setText(String.valueOf(achar) );
 
@@ -326,6 +325,7 @@ public void armazenar(){
                            expressao.remove((i+1));
                            expressao.remove(i);
 
+
                             break;
                         case '*' :
                             //  resolvendo*=numeros;
@@ -337,7 +337,6 @@ public void armazenar(){
                         default:
                             break;
                     }
-
 
                     saida.setText(String.valueOf(resolvendo));
 
