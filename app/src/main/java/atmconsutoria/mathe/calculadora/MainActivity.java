@@ -246,7 +246,9 @@ private AlertDialog.Builder dialog;
         igual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-resolver();
+
+            resolver();
+
             }
         });
 
@@ -266,7 +268,7 @@ public void armazenar(){
             auxiliar=expressaoRecebe.charAt(r);
 
             if(verificar(auxiliar)){
-                 if(expressao.get(indice).equals("")){
+                 if(expressao.get(indice).equals("")||expressao.get(indice).equals("0")){
                      expressao.set(indice,String.valueOf(auxiliar));
 
                      indice=expressao.size();
@@ -291,10 +293,10 @@ public void armazenar(){
 
         r++;
         }
-       // saida.setText(String.valueOf(expressao.size()));
+//      saida.setText(String.valueOf(expressao.size()));
 //    for (String str:expressao
 //         ) {
-//       ///saida.setText(saida.getText()+str);
+//       saida.setText(saida.getText()+str);
 //    }
 
 }
@@ -306,50 +308,65 @@ public void armazenar(){
 
         Character achar='z';
 
-            for(int i=0; i<(expressao.size()); i++){
+            for(int i=0; i<expressao.size(); i++){
+
                 achar= expressao.get(i).charAt(0);
            //     saida.setText(String.valueOf(achar) );
 
-                if(verificar(achar)) {
+             //   if(verificar(achar)) {
 
                     switch (achar){
 
                         case '-' :
-
-
+                            resolvendo= (Integer.valueOf(expressao.get(i-1)))-(Integer.valueOf(expressao.get(i+1)));
+                            expressao.set(i-1,String.valueOf(resolvendo));
+                            expressao.remove((i+1));
+                            expressao.remove(i);
+                           saida.setText(String.valueOf(expressao.size()));
+                            i--;
                             break;
 
                         case '+' :
                            resolvendo= (Integer.valueOf(expressao.get(i-1)))+(Integer.valueOf(expressao.get(i+1)));
-                           expressao.set(i-1,String.valueOf(resolvendo));
+                           expressao.set(i-i,String.valueOf(resolvendo));
+                           expressao.get(i+1);
+                            expressao.get(i);
                            expressao.remove((i+1));
                            expressao.remove(i);
-
-
+                            i--;
                             break;
                         case '*' :
-                            //  resolvendo*=numeros;
+                            resolvendo= (Integer.valueOf(expressao.get(i-1)))*(Integer.valueOf(expressao.get(i+1)));
+                            expressao.set(i-1,String.valueOf(resolvendo));
+                            expressao.remove((i+1));
+                            expressao.remove(i);
+                            i--;
+
                             break;
                         case '/' :
-                            //   resolvendo/=numeros;
+                            resolvendo= (Integer.valueOf(expressao.get(i-1)))/(Integer.valueOf(expressao.get(i+1)));
+                            expressao.set(i-1,String.valueOf(resolvendo));
+                            expressao.remove((i+1));
+                            expressao.remove(i);
+                            i--;
                             break;
 
                         default:
                             break;
-                    }
-
-                    saida.setText(String.valueOf(resolvendo));
-
-                    sinal =true;
-
-                    qualNum=true;                }
+                   // }
 
 
 
 
+            }
+
+                sinal =true;
+
+                qualNum=true;
 
 
-        }
+        }               saida.setText(String.valueOf(resolvendo));
+
             for (String str:expressao
                  ) {
                 if(str!=null||str!=""){
