@@ -13,12 +13,12 @@ public class MainActivity extends AppCompatActivity {
 private Button menos,mais,vezes,divisao,um,dois,tres,quatro,cinco,seis,sete,oito,nove,zero,igual;
 private String expressaoRecebe="";
 private ArrayList<String> expressao;
+private ArrayList<String> expressaoPrecedencia;
 private boolean sinal=true;
 private EditText saida;
 private int resolvendo=0;
 private boolean qualNum=true;
 private AlertDialog.Builder dialog;
-    private ArrayList<String> expressaoAux;
 
 // dialog "deseja trocar o sinal?????"
     @Override
@@ -26,7 +26,7 @@ private AlertDialog.Builder dialog;
         super.onCreate(savedInstanceState);
 
         expressao=new ArrayList<String>();
-        expressaoAux=new ArrayList<String>();
+        expressaoPrecedencia=new ArrayList<String>();
 
         setContentView(R.layout.activity_main);
         menos=findViewById(R.id.botaoMenos_Id);
@@ -47,6 +47,7 @@ private AlertDialog.Builder dialog;
         saida=findViewById(R.id.saida_Id);
         saida.setText(" ");
         dialog =new AlertDialog.Builder(MainActivity.this);
+        expressao.add("0");
 
        // expressao.add(0,"");
         // ************************************************
@@ -255,7 +256,74 @@ private AlertDialog.Builder dialog;
     }
 
 
+public void precedencia (){
 
+        armazenar();
+        int a=0;
+
+    while(expressao.size()!=expressaoPrecedencia.size()){
+        for (int i=0;i<expressao.size();i++){
+
+            if(expressao.get(i).equals("*")||expressao.get(i).equals("/")){
+                if(expressaoPrecedencia.size()>=2) {
+                    //                expressaoPrecedencia.add(a,expressao.get(i-1));
+//                a++;
+                    expressaoPrecedencia.add(a, expressao.get(i));
+                    a++;
+                    expressaoPrecedencia.add(a, expressao.get(i + 1));
+                    a++;
+                }else {
+
+                    expressaoPrecedencia.add(a, expressao.get(i - 1));
+                    a++;
+                    expressaoPrecedencia.add(a, expressao.get(i));
+                    a++;
+                    expressaoPrecedencia.add(a, expressao.get(i + 1));
+                    a++;
+                }
+            }
+        }
+
+        for (int i=0;i<expressao.size();i++){
+
+            if(expressao.get(i).equals("+")||expressao.get(i).equals("-")) {
+                if(expressaoPrecedencia.size()>=2){
+//                expressaoPrecedencia.add(a,expressao.get(i-1));
+//                a++;
+                expressaoPrecedencia.add(a, expressao.get(i));
+                a++;
+                expressaoPrecedencia.add(a, expressao.get(i + 1));
+                a++;
+            }
+            else{
+                expressaoPrecedencia.add(a,expressao.get(i-1));
+                a++;
+                expressaoPrecedencia.add(a, expressao.get(i));
+                a++;
+                expressaoPrecedencia.add(a, expressao.get(i + 1));
+                a++;
+            }
+
+            }
+        }
+
+         expressao.clear();
+        for (String str:expressaoPrecedencia
+                ) {
+            expressao.add(str);
+
+        }
+      //  expressaoPrecedencia.clear();
+//saida.setText(String.valueOf(expressaoPrecedencia.size()));
+        saida.setText("");
+    }
+//        for (String str:expressao
+//                ) {
+//            saida.setText(saida.getText()+str);
+//    }
+
+
+}
 
 
 public void armazenar(){
@@ -265,7 +333,7 @@ public void armazenar(){
     expressao.add(expressao.size(),"");
     int i=0; int r=0;
         for(i=0; i<(expressaoRecebe.length()); i++){
-            auxiliar=expressaoRecebe.charAt(r);
+            auxiliar=expressaoRecebe.charAt(i);
 
             if(verificar(auxiliar)){
                  if(expressao.get(indice).equals("")||expressao.get(indice).equals("0")){
@@ -286,12 +354,13 @@ public void armazenar(){
             else {
 
 
-                numeroMaior= String.valueOf(auxiliar);
-                numeroMaior = numeroMaior+expressao.get(indice);
+
+                numeroMaior =expressao.get(indice);
+                numeroMaior+= String.valueOf(auxiliar);
                 expressao.set(indice,numeroMaior);
             }
 
-        r++;
+       // r++;
         }
 //      saida.setText(String.valueOf(expressao.size()));
 //    for (String str:expressao
@@ -304,7 +373,8 @@ public void armazenar(){
 
         public void resolver(){
 
-        armazenar();
+        precedencia();
+            expressaoPrecedencia.clear();
 
         Character achar='z';
 
@@ -367,28 +437,28 @@ public void armazenar(){
 
         }               saida.setText(String.valueOf(resolvendo));
 
-            for (String str:expressao
-                 ) {
-                if(str!=null||str!=""){
-                    expressaoAux.add(str);
-                }
-            }
-            expressao=new ArrayList<String>();
-
-
-            for (String str:expressaoAux
-                    ) {
-                if(str!=null||str!=""){
-                    expressao.add(str);
-                }
-            }
+//            for (String str:expressao
+//                 ) {
+//                if(str!=null||str!=""){
+//                    expressaoAux.add(str);
+//                }
+//            }
+//            expressao=new ArrayList<String>();
+//
+//
+//            for (String str:expressaoAux
+//                    ) {
+//                if(str!=null||str!=""){
+//                    expressao.add(str);
+//                }
+//            }
 
 //saida.setText(String.valueOf(expressao.size()));
 
 expressaoRecebe="";
 
 
-    }
+}
 
     public boolean verificar(char testada){
         Character ultim= testada;
