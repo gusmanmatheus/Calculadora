@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.view.View.OnClickListener;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 private Button menos,mais,vezes,divisao,um,dois,tres,quatro,cinco,seis,sete,oito,nove,zero,igual;
 private String expressaoRecebe="";
 private ArrayList<String> expressao;
@@ -30,49 +30,189 @@ private AlertDialog.Builder dialog;
 
         setContentView(R.layout.activity_main);
         menos=findViewById(R.id.botaoMenos_Id);
+        menos.setOnClickListener( this);
         mais=findViewById(R.id.botaoMais_Id);
+        mais.setOnClickListener( this);
         vezes=findViewById(R.id.botaoVezes_Id);
+        vezes.setOnClickListener( this);
         divisao=findViewById(R.id.botaoDivisao_Id);
+        divisao.setOnClickListener( this);
         um=findViewById(R.id.um_Id);
+        um.setOnClickListener( this);
         dois=findViewById(R.id.dois_Id);
+        dois.setOnClickListener( this);
         tres=findViewById(R.id.tres_Id);
+        tres.setOnClickListener( this);
         quatro=findViewById(R.id.quatro_Id);
+        quatro.setOnClickListener( this);
         cinco=findViewById(R.id.cinco_Id);
+        cinco.setOnClickListener( this);
         seis=findViewById(R.id.seis_Id);
+        seis.setOnClickListener( this);
         sete=findViewById(R.id.sete_Id);
+        sete.setOnClickListener( this);
         oito=findViewById(R.id.oito_Id);
+        oito.setOnClickListener( this);
         nove=findViewById(R.id.nove_Id);
+        nove.setOnClickListener( this);
         zero=findViewById(R.id.zero);
+        zero.setOnClickListener( this);
         igual=findViewById(R.id.igual_Id);
+        igual.setOnClickListener( this);
         saida=findViewById(R.id.saida_Id);
+        saida.setOnClickListener( this);
+
         saida.setText(" ");
         dialog =new AlertDialog.Builder(MainActivity.this);
         expressao.add("0");
 
+
        // expressao.add(0,"");
-        // ************************************************
-        vezes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (sinal==true) {
-                    expressaoRecebe+="*";
-                    saida.setText(saida.getText()+" *");
-                    sinal =false;
-
-                }
-                else{
-//                     chama dialog
-                }
 
 
-            }
-        });
-        // ///////////////////////////////////////////////////
-        divisao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        // ---------------------------------------------------
+
+
+        //0000000000000000000000000000000000000000000000000
+//        zero.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//           expressaoRecebe+="0";
+//           saida.setText(saida.getText()+" 0");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//        //111111111111111111111111111111111111111111111111
+//        um.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="1";
+//                saida.setText(saida.getText()+" 1");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//
+//        //22222222222222222222222222222222222222222222222222
+////        dois.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                expressaoRecebe+="2";
+////                saida.setText(saida.getText()+" 2");
+////                sinal =true;
+////
+////
+////            }
+////        });
+//
+//        //33333333333333333333333333333333333333333333333333
+//        tres.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="3";
+//                saida.setText(saida.getText()+" 3");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//
+//        //444444444444444444444444444444444444444444444444
+//        quatro.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="4";
+//                saida.setText(saida.getText()+" 4");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//
+//        //5555555555555555555555555555555555555555555555555
+//        cinco.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="5";
+//                saida.setText(saida.getText()+" 5");
+//                sinal =true;
+//
+//
+//            }
+//        });
+//        //666666666666666666666666666666666666666666666666
+//        seis.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="6";
+//                saida.setText(saida.getText()+" 6");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//        //77777777777777777777777777777777777777777777777777
+//        sete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="7";
+//                saida.setText(saida.getText()+" 7");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//        //888888888888888888888888888888888888888888888888888
+//        oito.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="8";
+//                saida.setText(saida.getText()+" 8");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//        //999999999999999999999999999999999999999999999999
+//        nove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                expressaoRecebe+="9";
+//                saida.setText(saida.getText()+" 9");
+//                sinal =true;
+//
+//
+//
+//            }
+//        });
+//
+//        igual.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            resolver();
+//
+//            }
+//        });
+//
+    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.botaoDivisao_Id:
                 if (sinal==true) {
                     expressaoRecebe+="/";
                     saida.setText(saida.getText()+" /");
@@ -83,14 +223,22 @@ private AlertDialog.Builder dialog;
 //                     chama dialog
                 }
 
+                break;
 
-            }
-        });
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++
-        mais.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.botaoVezes_Id:
 
+                if (sinal==true) {
+                    expressaoRecebe+="*";
+                    saida.setText(saida.getText()+" *");
+                    sinal =false;
+
+                }
+                else{
+//                     chama dialog
+                }
+                break;
+
+            case R.id.botaoMais_Id:
                 if (sinal==true) {
                     expressaoRecebe+="+";
                     saida.setText(saida.getText()+" +");
@@ -101,160 +249,28 @@ private AlertDialog.Builder dialog;
 //                     chama dialog
                 }
 
+            case  R.id.botaoMenos_Id:
+                if (sinal==true) {
+                    expressaoRecebe+="-";
+                    saida.setText(saida.getText()+" -");
+                    sinal =false;
 
-            }
-        });
-        // ---------------------------------------------------
-        menos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                    if (sinal==true) {
-                         expressaoRecebe+="-";
-                        saida.setText(saida.getText()+" -");
-                        sinal =false;
-
-                    }
-                    else{
+                }
+                else{
 //                     chama dialog
-                    }
+                }
+                break;
+            case  R.id.igual_Id:
+                resolver();
+                break;
+            default:{
 
-            }
-        });
-        //0000000000000000000000000000000000000000000000000
-        zero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-           expressaoRecebe+="0";
-           saida.setText(saida.getText()+" 0");
+                expressaoRecebe+=((Button)v).getText();
+                saida.setText(saida.getText()+""+((Button)v).getText());
                 sinal =true;
-
-
-
             }
-        });
-        //111111111111111111111111111111111111111111111111
-        um.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="1";
-                saida.setText(saida.getText()+" 1");
-                sinal =true;
 
-
-
-            }
-        });
-
-        //22222222222222222222222222222222222222222222222222
-        dois.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="2";
-                saida.setText(saida.getText()+" 2");
-                sinal =true;
-
-
-            }
-        });
-
-        //33333333333333333333333333333333333333333333333333
-        tres.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="3";
-                saida.setText(saida.getText()+" 3");
-                sinal =true;
-
-
-
-            }
-        });
-
-        //444444444444444444444444444444444444444444444444
-        quatro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="4";
-                saida.setText(saida.getText()+" 4");
-                sinal =true;
-
-
-
-            }
-        });
-
-        //5555555555555555555555555555555555555555555555555
-        cinco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="5";
-                saida.setText(saida.getText()+" 5");
-                sinal =true;
-
-
-            }
-        });
-        //666666666666666666666666666666666666666666666666
-        seis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="6";
-                saida.setText(saida.getText()+" 6");
-                sinal =true;
-
-
-
-            }
-        });
-        //77777777777777777777777777777777777777777777777777
-        sete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="7";
-                saida.setText(saida.getText()+" 7");
-                sinal =true;
-
-
-
-            }
-        });
-        //888888888888888888888888888888888888888888888888888
-        oito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="8";
-                saida.setText(saida.getText()+" 8");
-                sinal =true;
-
-
-
-            }
-        });
-        //999999999999999999999999999999999999999999999999
-        nove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expressaoRecebe+="9";
-                saida.setText(saida.getText()+" 9");
-                sinal =true;
-
-
-
-            }
-        });
-
-        igual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            resolver();
-
-            }
-        });
-
-    }
-
+        }}
 
 public void precedencia (){
 
@@ -437,23 +453,6 @@ public void armazenar(){
 
         }               saida.setText(String.valueOf(resolvendo));
 
-//            for (String str:expressao
-//                 ) {
-//                if(str!=null||str!=""){
-//                    expressaoAux.add(str);
-//                }
-//            }
-//            expressao=new ArrayList<String>();
-//
-//
-//            for (String str:expressaoAux
-//                    ) {
-//                if(str!=null||str!=""){
-//                    expressao.add(str);
-//                }
-//            }
-
-//saida.setText(String.valueOf(expressao.size()));
 
 expressaoRecebe="";
 
@@ -470,5 +469,6 @@ expressaoRecebe="";
         return false;
 
             }
+
 
 }

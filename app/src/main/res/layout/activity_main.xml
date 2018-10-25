@@ -9,6 +9,7 @@
     android:weightSum="100"
     >
 
+
     <EditText
         android:id="@+id/saida_Id"
         android:layout_width="match_parent"
